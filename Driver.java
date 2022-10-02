@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Driver { 
- public static void main(String [] args) { 
+ public static void main(String [] args) throws IOException{ 
 	//test File
 	 /*
 	 File f = new File("C:\\Users\\jiaqi\\Desktop\\B07\\lab1\\123.txt");
@@ -32,7 +32,7 @@ public class Driver {
 	  int [] b2 = {4,2,1};
 	  Polynomial k = new Polynomial(b1,b2); 
 	  Polynomial s = f.multiply(k);
-	  //k.SaveToFile("C:\\Users\\jiaqi\\Desktop\\B07\\lab1\\save.txt");
+	  k.SaveToFile("C:\\Users\\jiaqi\\Desktop\\b07lab1\\111.txt");
 	  System.out.println("k(0.1) = " + k.evaluate(0.1)); 
 	  
 	  

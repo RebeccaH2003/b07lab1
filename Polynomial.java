@@ -1,8 +1,8 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Scanner;
+
 
 public class Polynomial {
 	double coef_array[];
@@ -190,8 +190,8 @@ public class Polynomial {
 	}
 	
 	
-	public void SaveToFile(String file_name) throws FileNotFoundException{
-		PrintStream ps = new PrintStream(file_name);
+	public void SaveToFile(String file_name) throws IOException {
+		FileWriter writer = new FileWriter(file_name);
 		String equation = "";
 		
 		if(this.exp_array[0]  == 0) {
@@ -209,9 +209,10 @@ public class Polynomial {
 		equation = equation.replace(".0", "");
 		equation = equation.replace("x1", "x");
 		
-		ps.println(equation);
-		ps.close();
+		writer.write(equation);
+		writer.close();
 	}
 	
+
 }
 		
