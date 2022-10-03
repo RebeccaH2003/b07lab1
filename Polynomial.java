@@ -27,33 +27,29 @@ public class Polynomial {
 		scanner.close();
 		
 		String new_line = line.replace("-", "+-");
+		
+		if(new_line.charAt(0) == '+')
+			new_line = new_line.substring(1);
+		
 		String[] array = new_line.split("\\+");
-		
 		this.coef_array = new double[array.length];
-		this.exp_array = new int[array.length];
-		
+		this.exp_array = new int[array.length];		
 		for (int i = 0; i < this.coef_array.length ; i++){
 			this.coef_array[i]= 0;
 			this.exp_array[i] = 0;
 		}
-		
 		for(int i = 0; i < array.length; i++) {
 			check_x(array[i], this.coef_array, this.exp_array, i);
-		}
+		}			
+			
 	}
 	
-	
 	public void check_x(String element, double[] coef_array, int[] exp_array, int index) {
+		//Assume for x we will write 1x1
 		if(element.contains("x")) {
 			String[] array1 = element.split("x");
-			if(array1.length == 2) {
-				coef_array[index] = Double.parseDouble(array1[0]);
-				exp_array[index] = Integer.parseInt(array1[1]);
-			}
-			else {
-				coef_array[index] = Double.parseDouble(array1[0]);
-				exp_array[index] = 1;
-			}
+			coef_array[index] = Double.parseDouble(array1[0]);
+			exp_array[index] = Integer.parseInt(array1[1]);
 		}
 		else {
 			coef_array[index] = Double.parseDouble(element);
@@ -106,8 +102,28 @@ public class Polynomial {
 			}
 			
 		}
+		//count non zero coef
+		int count = 0;
+		for(int i = 0; i < new_coef.length; i++) {
+			if(new_coef[i] != 0.0) {
+				count++;
+			}
+		}
+		//create new arrays, that will not have zero coef
+		double[] coef = new double[count];
+		int[] exp = new int[count];
 		
-		Polynomial new_poly = new Polynomial(new_coef,new_exp);	
+		int index1 = 0;
+		for(int i = 0; i < new_coef.length; i++) {
+			if(new_coef[i] != 0.0) {
+				coef[index1] = new_coef[i];
+				exp[index1] = new_exp[i];
+				index1++;
+			}
+		}
+		
+		
+		Polynomial new_poly = new Polynomial(coef,exp);	
 		return new_poly;
 		
 	}
@@ -193,6 +209,7 @@ public class Polynomial {
 	public void SaveToFile(String file_name) throws IOException {
 		FileWriter writer = new FileWriter(file_name);
 		String equation = "";
+		
 		
 		if(this.exp_array[0]  == 0) {
 			equation = Double.toString(this.coef_array[0]);
