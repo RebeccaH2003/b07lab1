@@ -32,7 +32,7 @@ public class Driver {
 		  Polynomial s = f.multiply(p2);
 		  
 		  Polynomial k = f.add(p2);
-		  f.SaveToFile("C:\\Users\\jiaqi\\Desktop\\b07lab1\\111.txt");
+		  //f.SaveToFile("C:\\Users\\jiaqi\\Desktop\\b07lab1\\111.txt");
 		  
 		  System.out.println("Test add:");
 		  for(int i = 0; i < k.coef_array.length; i++) {
