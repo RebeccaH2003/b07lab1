@@ -12,7 +12,7 @@ public class Polynomial {
 	
 	public Polynomial(){
  		this.coef_array = new double[0];
- 		this.exp_array = new int [0];
+ 		this.exp_array = new int[0];
 	}
 	
 	public Polynomial(double[] given_coef, int[] given_exp) {
@@ -155,6 +155,12 @@ public class Polynomial {
 	
 	public Polynomial multiply(Polynomial given_poly) {
 		
+		if(given_poly.exp_array.length == 0)
+			return this;
+		
+		if(this.exp_array.length == 0) 
+			return given_poly;
+		
 		//find the largest exp in 2 arrays.
 		int max1 = -1;
 		int max2 = -1;
@@ -224,10 +230,9 @@ public class Polynomial {
 		
 	}
 	
-	public void SaveToFile(String file_name) throws IOException {
+	public void saveToFile(String file_name) throws IOException {
 		FileWriter writer = new FileWriter(file_name);
 		String equation = "";
-		
 		
 		if(this.exp_array[0]  == 0) {
 			equation = Double.toString(this.coef_array[0]);
@@ -247,7 +252,4 @@ public class Polynomial {
 		writer.write(equation);
 		writer.close();
 	}
-	
-
 }
-		
